@@ -12,7 +12,7 @@ Here's some tips for creating a great algorithm challenge:
 - Add function definitions
 - Add helpers
 - Update `src/algo.js` filename with name of algo
-- Update `spec/spec.js` `<title>` with name of algo
+- Update `SpecRunner.html` `<title>` with name of algo
 
 
 ## Readme
