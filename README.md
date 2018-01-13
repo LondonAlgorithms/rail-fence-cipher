@@ -1,41 +1,69 @@
-# Algorithm Challenge Boilerplate
+# Algorithm Challenge - Rail Fence Cipher
+
+## How to get started
+1. Clone the repo:
+```
+git clone https://github.com/LondonAlgorithms/rail-fence-cipher.git
+cd rail-fence-cipher
+```
+
+2. Start modifying `src/algo.js`. 
+
+
+## Algorithm
+The rail fence cipher is a tranposition cipher. It uses a grid with a zig-zag 
+pattern for both encryption and decryption. The grid has a number of rows
+equal to the symmetric key and a number of columns equal to the length of the
+cleartext and ciphertext, which have the same length.
+
+### Encryption
+To encrypt a cleartext, start creating a grid with a zig-zag pattern. For 
+example, for key = 3:
 
 ```
-git clone https://github.com/LondonAlgorithms/boilerplate.git
-cd boilerplate
+x...x...x....x...x
+.x.x.x.x.x..x.x.x.
+..x...x...x....x..
 ```
 
-Here's some tips for creating a great algorithm challenge:
+Then, write your cleartext, say "rail fence cipher", in place of the x's, 
+zig-zag'ing through the grid:
 
-- Write a readme
-- Add specs
-- Add function definitions
-- Add helpers
-- Update `src/algo.js` filename with name of algo
-- Update `SpecRunner.html` `<title>` with name of algo
+```
+r... ...c....i...r
+.a.l.f.n.e..c.p.e.
+..i...e... ....h..
+```
 
+Finally, concatenate sequentially each row, skipping the empty cells, obtaining
+the ciphertext "r ciralfnecpeie h".
 
-## Readme
+### Decryption
+Decryption is similar to encryption, yet different. Start creating, the grid
+with the zig-zag pattern as before:
 
-- Introduction: Write a clear description of the algorithm
-- Resources: Include links to any slides, blog posts or articles if you are relying on them to help people to quickly grasp the concepts involved
-- The challenge: Describe the challenge step by step (enough so someone without prior explanation can get started)
-- Helpers: Document the helpers you are providing and, if helpful, explain the role they play in the algorithm
-- Credits
+```
+x...x...x....x...x
+.x.x.x.x.x..x.x.x.
+..x...x...x....x..
+```
 
+Then, going row by row, from left to right, replace the x's with the letters
+from the ciphertext. For example, for the ciphertext "r ciralfnecpeie h":
 
-## Specs
+```
+r...x...x....x...x     "r ciralfnecpeie h"
+.x.x.x.x.x..x.x.x.      ^
+..x...x...x....x..
 
-- Start with some easy functions (give people a foot in the door)
-- Specs should correspond the functions the student is writing
+r... ...c....i...r     "r ciralfnecpeie h"
+.a.l.x.x.x..x.x.x.            ^
+..x...x...x....x..
 
-## Function definitions
+r... ...c....i...r     "r ciralfnecpeie h"
+.a.l.f.n.e..c.p.e.                      ^
+..i...e... ....h..
+```
 
-- Create shell functions
-- Document functions using JSDoc
-- Try to keep functions in an order that corresponds to the specs
-
-## Helpers
-
-- Abstract away all the icky complex code into helpers
-- Document in the readme
+Finally, read the text following the zig-zag pattern, obtaining the
+clear text "rail fence cipher".
