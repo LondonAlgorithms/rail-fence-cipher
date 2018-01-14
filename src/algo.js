@@ -24,10 +24,7 @@
  * @return {number} row index corresponding to i
  */
 function row(i, k) {
-  if (k == 1) return 0;
-  const n = 2 * k - 2;
-  i = i % n;
-  return (i < k) ? i : n - i;
+  return 0;
 }
 
 /**
@@ -40,13 +37,7 @@ function row(i, k) {
  * @return {string} The ciphertext.
  */
 function encrypt(text, key) {
-  if (key == 1) return text;
-
-  var grid = _.range(key).map(function () { return "" });
-  for (var i = 0; i < text.length; i++) {
-    grid[row(i, key)] += text[i];
-  }
-  return grid.join("");
+  return "not-the-solution";
 }
 
 /**
@@ -69,9 +60,6 @@ function encrypt(text, key) {
  */
 function createGrid(rows, cols, marker = 'x') {
   var grid = _.range(rows).map(function () { return [] });
-  for (var i = 0; i < cols; i++) {
-    grid[row(i, rows)][i] = marker;
-  }
   return grid;
 }
 
@@ -101,14 +89,6 @@ function createGrid(rows, cols, marker = 'x') {
  *
  */
 function fillGridHorizontally(grid, rows, cols, text) {
-  var k = 0;
-  for (var i = 0; i < rows; i++) {
-    for (var j = 0; j < cols; j++) {
-      if (grid[i][j]) {
-        grid[i][j] = text[k++];
-      }
-    }
-  }
 }
 
 /**
@@ -136,11 +116,7 @@ function fillGridHorizontally(grid, rows, cols, text) {
  * @return {array} The cleartext.
  */
 function readGridZigZag(grid, rows, cols) {
-  var cleartext = "";
-  for (var i = 0; i < cols; i++) {
-    cleartext += grid[row(i, rows)][i];
-  }
-  return cleartext;
+  return "not-the-solution";
 } 
 
 /**
@@ -152,12 +128,5 @@ function readGridZigZag(grid, rows, cols) {
  * @return {array} The cleartext.
  */
 function decrypt(text, key) {
-  if (key == 1) return text;
-
-  const cols = text.length;
-  const rows = key; 
-
-  var grid = createGrid(rows, cols);
-  fillGridHorizontally(grid, rows, cols, text);
-  return readGridZigZag(grid, rows, cols);
+  return "not-the-solution";
 }
