@@ -16,6 +16,9 @@ pattern for both encryption and decryption. The grid has a number of rows
 equal to the symmetric key and a number of columns equal to the length of the
 cleartext and ciphertext, which have the same length.
 
+- Detailed description: http://crypto.interactive-maths.com/rail-fence-cipher.html
+- Wiki page: https://en.wikipedia.org/wiki/Rail_fence_cipher
+
 ### Encryption
 To encrypt a cleartext, start creating a grid with a zig-zag pattern. For 
 example, for key = 3:
