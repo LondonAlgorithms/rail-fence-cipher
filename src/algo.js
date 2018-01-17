@@ -27,7 +27,15 @@ function row(i, k) {
   if (k == 1) return 0;
   const n = 2 * k - 2;
   i = i % n;
-  return (i < k) ? i : n - i;
+  // Say k = 3, now i is in [0..3]
+  // For i <= 2, we just want to return i,
+  // What do we want to return for i = 3?
+  // Can you think of a formula that works
+  // using n = 4?
+  if (i >= k) {
+     // return ... something with i and n;
+  }
+  return i;
 }
 
 /**
@@ -44,7 +52,10 @@ function encrypt(text, key) {
 
   var grid = _.range(key).map(function () { return "" });
   for (var i = 0; i < text.length; i++) {
-    grid[row(i, key)] += text[i];
+    // We want to put each character text[i] in the proper
+    // row grid[j]. The problem is to select the row j. 
+    // Can you think of the right index j using the row() function?
+    // grid[...] ... = text[i];
   }
   return grid.join("");
 }
@@ -70,7 +81,9 @@ function encrypt(text, key) {
 function createGrid(rows, cols, marker = 'x') {
   var grid = _.range(rows).map(function () { return [] });
   for (var i = 0; i < cols; i++) {
-    grid[row(i, rows)][i] = marker;
+    // Similarly as above, we want to put marker in the 
+    // right rows of grid. For each column, how would
+    // you select the row?
   }
   return grid;
 }
@@ -104,9 +117,10 @@ function fillGridHorizontally(grid, rows, cols, text) {
   var k = 0;
   for (var i = 0; i < rows; i++) {
     for (var j = 0; j < cols; j++) {
-      if (grid[i][j]) {
-        grid[i][j] = text[k++];
-      }
+      // Going from left to right, top to bottom,
+      // we want to put the characters text[k] into grid
+      // But we want to skip the undefined cell.
+      // How would you do that with an if check?
     }
   }
 }
@@ -137,9 +151,12 @@ function fillGridHorizontally(grid, rows, cols, text) {
  */
 function readGridZigZag(grid, rows, cols) {
   var cleartext = "";
-  for (var i = 0; i < cols; i++) {
-    cleartext += grid[row(i, rows)][i];
-  }
+  // By now you are an expert in zig-zig looping :)
+  // How would you read the chars from the zig-zag pattern
+  // and append them to cleartext?
+  //for (...) { 
+  //  cleartext += grid[...];
+  //}
   return cleartext;
 } 
 
@@ -156,8 +173,10 @@ function decrypt(text, key) {
 
   const cols = text.length;
   const rows = key; 
-
-  var grid = createGrid(rows, cols);
-  fillGridHorizontally(grid, rows, cols, text);
-  return readGridZigZag(grid, rows, cols);
+  
+  // Finally try to use the above functions to write decrypt()
+  // var grid = ...;
+  // ...
+  //return ...;
+  return "not-the-solution";
 }
